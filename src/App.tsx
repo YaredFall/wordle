@@ -1,20 +1,17 @@
 import './App.css'
-import useDarkMode from "./Hooks/useDarkMode";
-
-
+import Navbar from "./components/Navbar";
 
 function App() {
 
-    const [toggleTheme] = useDarkMode();
+    return (
+        <div className="App">
+            <Navbar />
 
-  return (
-    <div className="App">
-        <button children={"change theme"} onClick={toggleTheme}/>
-      <p>
-        Hello!
-      </p>
-    </div>
-  )
+            <p>
+                Hello!
+            </p>
+        </div>
+    )
 }
 
 export default App
