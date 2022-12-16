@@ -1,17 +1,15 @@
-import './App.css'
+import React, { FC } from 'react';
 import Navbar from "./components/Navbar";
+import WordleGame from "./components/WordleGame/WordleGame";
 
-function App() {
+const App: FC = ({}) => {
 
     return (
-        <div className="App">
+        <>
             <Navbar />
+            <main className={"flex h-full flex-col items-center p-2 mt-4"} children={<WordleGame />}/>
+        </>
+    );
+};
 
-            <p>
-                Hello!
-            </p>
-        </div>
-    )
-}
-
-export default App
+export default App;

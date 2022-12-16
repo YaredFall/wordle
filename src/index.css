@@ -44,10 +44,13 @@
     color: var(--link-hover-color);
   }
 
-  body {
+  body, #root {
     margin: 0;
+
     display: flex;
-    place-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
     min-width: 320px;
     min-height: 100vh;
   }
