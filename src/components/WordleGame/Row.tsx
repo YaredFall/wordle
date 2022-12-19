@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import Cell, {Clue} from "./Cell";
+import {Clue} from "./WordleGame";
+import Cell from "./Cell";
 
 type RowProps = {
     length?: number

@@ -1,10 +1,7 @@
 import React, { FC } from 'react';
+import {Clue} from "./WordleGame";
 
-export enum Clue {
-    wrong,
-    contained,
-    exact
-}
+
 
 type CellProps = {
     letter?: string
