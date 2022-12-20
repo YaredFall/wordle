@@ -1,9 +1,8 @@
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import Table from "./Table";
 import VirtualKeyboard, {DELETE_CHAR, SUBMIT_CHAR} from "./VirtualKeyboard";
-
-
 import words from "../../assets/wordList.json"
+
 
 export enum Clue {
     absent,
@@ -29,12 +28,12 @@ type WordleGameProps = {
 
 const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
 
-    const filtredWords = useMemo(() => {
+    const filteredWords = useMemo(() => {
         return words.filter(w => w.length === wordLength)
     }, [wordLength])
 
     const [gameState, setGameState] = useState(GameState.playing);
-    const [wordToGuess, setWordToGuess] = useState(filtredWords[~~(Math.random() * filtredWords.length)]);
+    const [wordToGuess, setWordToGuess] = useState(filteredWords[~~(Math.random() * filteredWords.length)]);
     const [currentLetters, setCurrentLetters] = useState<string[]>([]);
     const [usedWords, setUsedWords] = useState<string[]>([])
 
@@ -56,7 +55,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
         if (letter === SUBMIT_CHAR) {
             if (currentLetters.length === wordLength) {
                 const currentWord = currentLetters.join("");
-                if (filtredWords.includes(currentWord)) {
+                if (filteredWords.includes(currentWord)) {
                     setUsedWords([...usedWords, currentWord])
                     setCurrentLetters([])
                 }
@@ -91,9 +90,10 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     }, [cluedUsedWords]);
 
     //Clear used words on wordToGuess change
-    useEffect(() => {
-        setUsedWords([]);
-    }, [wordToGuess]);
+    // useEffect(() => {
+    //     setUsedWords([]);
+    // }, [wordToGuess]);
+
 
     useEffect(() => {
         if (usedWords.includes(wordToGuess)) {
