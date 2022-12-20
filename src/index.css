@@ -70,9 +70,15 @@
     cursor: pointer;
     transition: border-color 0.25s;
   }
-  button:hover {
+  @media(hover: hover) {
+    button:hover {
+      background-color: var(--btn-hover-bg-color);
+    }
+  }
+  button:active {
     background-color: var(--btn-hover-bg-color);
   }
+
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -80,6 +86,21 @@
 
   :focus:not(:focus-visible) {
     outline: none;
+  }
+
+  button,
+  textarea,
+  input,
+  select,
+  a{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
   }
 
   @media (prefers-color-scheme: dark) {
