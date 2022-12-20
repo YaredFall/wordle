@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     "./index.html",
@@ -12,23 +13,23 @@ module.exports = {
 
         'text-primary': '#fbfef9',
 
-        'bg-primary': '#171717',
-        'bg-secondary': '#1f1f1f',
-        'bg-tertiary': '#2f2f2f',
+        'bg-primary': colors.zinc["900"],
+        'bg-secondary': colors.zinc["700"],
+        'bg-tertiary': colors.zinc["800"],
 
-        'btn-primary': '#171717',
-        'btn-hovered': '#4f4f4f',
+        'btn-primary': colors.zinc["900"],
+        'btn-hovered': colors.zinc["700"],
 
         //    LIGHT VALUES    //
 
-        'text-primary-light': '#171717',
+        'text-primary-light': colors.zinc["900"],
 
-        'bg-primary-light': '#BCEAD5',
-        'bg-secondary-light': '#DEF5E5',
-        'bg-tertiary-light': '#fbfef9',
+        'bg-primary-light': colors.zinc["100"],
+        'bg-secondary-light': colors.red["300"],
+        'bg-tertiary-light': colors.white,
 
-        'btn-primary-light': '#DEF5E5',
-        'btn-hovered-light': '#9ED5C5'
+        'btn-primary-light': colors.zinc["200"],
+        'btn-hovered-light': colors.zinc["300"]
       },
     },
   },
