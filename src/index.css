@@ -21,7 +21,7 @@
 
   :root {
     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: min(3vmin, 16px);
+    font-size: min(3.125vmin, 16px);
     line-height: 24px;
     font-weight: 400;
 
