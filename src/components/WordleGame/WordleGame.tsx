@@ -118,7 +118,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
 
 
     return (
-        <div className={"flex flex-col items-center h-full mt-8"}>
+        <div className={"flex flex-col items-center h-full"}>
             <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
             <VirtualKeyboard onKeyClick={onKeyPress} keyLetterClue={keyLetterClue} />
         </div>

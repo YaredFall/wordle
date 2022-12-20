@@ -7,7 +7,7 @@ const App: FC = ({}) => {
     return (
         <>
             <Navbar />
-            <main className={"flex h-full flex-col items-center p-1 justify-self-stretch"} children={<WordleGame />}/>
+            <main className={"flex h-full flex-col items-center p-1 pt-[5%] justify-self-stretch"} children={<WordleGame />}/>
         </>
     );
 };

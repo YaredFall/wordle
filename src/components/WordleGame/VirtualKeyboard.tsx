@@ -18,7 +18,7 @@ type VirtualKeyboardProps = {
 const VirtualKeyboard: FC<VirtualKeyboardProps> = ({onKeyClick, keyLetterClue}) => {
 
     return (
-        <div className={"flex flex-col flex-1 items-center mt-[5%] gap-1"}>
+        <div className={"flex flex-col flex-1 items-center pt-[10%] sm:pt-0 sm:justify-center gap-1"}>
             {layout.map((row, i) => (
                 <div key={i} className={"flex flex-row gap-[inherit]"}
                      children={[...row].map((letter, j) => (
@@ -29,7 +29,7 @@ const VirtualKeyboard: FC<VirtualKeyboardProps> = ({onKeyClick, keyLetterClue}) 
                                  // disabled={keyLetterClue && keyLetterClue(letter) === 0 ? true : undefined}
                                  className={"uppercase [--accent-color:theme(colors.yellow.400)]" +
                                      ' data-[clue]:text-stone-900 data-[clue]:bg-[var(--accent-color)]' +
-                                     ' data-[clue="0"]:[--accent-color:theme(colors.gray.600)] data-[clue="0"]:text-gray-50' +
+                                     ' data-[clue="0"]:[--accent-color:theme(colors.gray.600)] data-[clue="0"]:text-text-primary' +
                                      ' data-[clue="1"]:[--accent-color:theme(colors.gray.200)]' +
                                      ' data-[clue="2"]'}
                          />
