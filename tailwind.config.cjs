@@ -16,7 +16,7 @@ module.exports = {
         'bg-secondary': '#1f1f1f',
         'bg-tertiary': '#2f2f2f',
 
-        'btn-primary': '#2f2f2f',
+        'btn-primary': '#171717',
         'btn-hovered': '#4f4f4f',
 
         //    LIGHT VALUES    //

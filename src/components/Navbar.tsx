@@ -15,7 +15,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
             <nav>
 
             </nav>
-            <ThemeToggle className={"ml-auto"} />
+            <ThemeToggle className={"ml-auto bg-bg-tertiary"} />
         </header>
     );
 };

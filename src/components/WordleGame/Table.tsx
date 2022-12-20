@@ -2,18 +2,18 @@ import React, {FC} from 'react';
 import Row from "./Row";
 import {cluedWord} from "./WordleGame";
 
-const tries = 6;
 
 type TableProps = {
+    rows: number
     cluedUsedWords?: cluedWord[]
     currentLetters?: string[]
 }
 
-const Table: FC<TableProps> = ({cluedUsedWords= [], currentLetters= []}) => {
+const Table: FC<TableProps> = ({rows, cluedUsedWords= [], currentLetters= []}) => {
 
     return (
-        <div className={"flex flex-col gap-2"}>
-            {[...Array(tries)].map((e, i) => {
+        <div className={"text-[2rem] font-semibold flex flex-col gap-2 w-full max-w-[80%] sm:max-w-[60%] flex-1 justify-center"}>
+            {[...Array(rows)].map((e, i) => {
                 if (i < cluedUsedWords?.length)
                     return <Row key={i} letters={[...cluedUsedWords[i].word]} clues={[...cluedUsedWords[i].clues]}/>
                 else if (i === cluedUsedWords?.length)
