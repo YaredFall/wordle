@@ -18,7 +18,7 @@ type VirtualKeyboardProps = {
 const VirtualKeyboard: FC<VirtualKeyboardProps> = ({onKeyClick, keyLetterClue}) => {
 
     return (
-        <div className={"flex flex-col flex-1 items-center pt-[10%] sm:pt-0 sm:justify-center gap-1"}>
+        <div className={"flex flex-col flex-1 items-center pt-[8%] pb-[42%] justify-center gap-1"}>
             {layout.map((row, i) => (
                 <div key={i} className={"flex flex-row gap-[inherit]"}
                      children={[...row].map((letter, j) => (

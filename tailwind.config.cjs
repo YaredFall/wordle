@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         //    DARK VALUES    //
 
-        'text-primary': '#fbfef9',
+        'text-primary': colors.zinc["50"],
 
         'bg-primary': colors.zinc["900"],
         'bg-secondary': colors.zinc["700"],
