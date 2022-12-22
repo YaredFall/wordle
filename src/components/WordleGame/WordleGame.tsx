@@ -3,7 +3,7 @@ import Table from "./Table";
 import VirtualKeyboard, {DELETE_CHAR, SUBMIT_CHAR} from "./VirtualKeyboard";
 import words from "../../assets/wordList.json"
 import GameResults from "./GameResults";
-import { SwitchTransition, CSSTransition } from "react-transition-group";
+import {CSSTransition, SwitchTransition} from "react-transition-group";
 import {Clue, GameState} from "./gameTypes";
 
 
@@ -87,9 +87,10 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     useEffect(() => {
         if (usedWords.includes(wordToGuess)) {
             setGameState(GameState.win)
-            setShowKb(false)
+            setShowKb(false);
         } else if (usedWords.length === maxTries) {
             setGameState(GameState.lose)
+            setShowKb(false);
         }
     }, [usedWords]);
 
@@ -97,7 +98,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
         setShowKb(true); //starts the animation
     }
 
-    const [showKb, setShowKb] = useState(gameState === GameState.playing); //controls kb/results animation
+    const [showKb, setShowKb] = useState(true); //controls kb/results animation
     const kbAndResultsContainerRef = useRef<HTMLDivElement>(null);
 
     return (
