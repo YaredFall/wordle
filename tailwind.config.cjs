@@ -33,6 +33,11 @@ module.exports = {
       },
       screens: {
         'tall': { 'raw': '(min-height: 800px)' }
+      },
+      animation: {
+        'grow-in': 'grow-in 750ms 250ms cubic-bezier(0.55, 0.06, 0.63, 1.21) forwards',
+        'shrink-down': 'shrink-down 500ms 250ms cubic-bezier(0.6, -0.37, 0.92, 0.64) forwards',
+        'fade-in-delayed': 'fade-in 750ms 750ms cubic-bezier(0.6, -0.37, 0.92, 0.64) forwards'
       }
     },
   },

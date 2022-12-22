@@ -1,24 +1,14 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
 import Table from "./Table";
 import VirtualKeyboard, {DELETE_CHAR, SUBMIT_CHAR} from "./VirtualKeyboard";
 import words from "../../assets/wordList.json"
+import GameResults from "./GameResults";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import {Clue, GameState} from "./gameTypes";
 
 
-export enum Clue {
-    absent,
-    present,
-    exact
-}
-export type cluedWord = {
-    word: string
-    clues: Clue[]
-}
-
-enum GameState {
-    playing,
-    win,
-    lose,
-    paused
+const getWord = (wordList: string[]) => {
+    return wordList[~~(Math.random() * wordList.length)]
 }
 
 type WordleGameProps = {
@@ -33,7 +23,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     }, [wordLength])
 
     const [gameState, setGameState] = useState(GameState.playing);
-    const [wordToGuess, setWordToGuess] = useState(filteredWords[~~(Math.random() * filteredWords.length)]);
+    const [wordToGuess, setWordToGuess] = useState(getWord(filteredWords));
     const [currentLetters, setCurrentLetters] = useState<string[]>([]);
     const [usedWords, setUsedWords] = useState<string[]>([])
 
@@ -49,7 +39,20 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
         }))
     }, [usedWords]);
 
-    const onKeyPress = (letter: string) => (e: React.MouseEvent) => {
+    //TODO: better algo
+    const keyLetterClue = useMemo(() => (letter: string) => {
+        const allLetters = usedWords.join("");
+        const allClues = cluedUsedWords.map(e => e.clues).flat()
+
+        const ids = [...allLetters].map((l, i) => letter === l ? i : null).filter(e => e !== null)
+        if (ids.length > 0)
+            return Math.max(...allClues.filter((c, i) => ids.includes(i)))
+
+        return undefined
+    }, [cluedUsedWords]);
+
+
+    const onVKbKeyPress = (letter: string) => (e: React.MouseEvent) => {
         if (gameState !== GameState.playing) return
 
         if (letter === SUBMIT_CHAR) {
@@ -63,7 +66,6 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
                     //TODO: proper messaging
                     alert("Word not in list!")
                 }
-
             } else {
                 //TODO: proper messaging
                 alert(`Word length must be ${wordLength}!`)
@@ -77,50 +79,59 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
         }
     }
 
-    //TODO: better algo
-    const keyLetterClue = useMemo(() => (letter: string) => {
-        const allLetters = usedWords.join("");
-        const allClues = cluedUsedWords.map(e => e.clues).flat()
-
-        const ids = [...allLetters].map((l, i) => letter === l ? i : null).filter(e => e !== null)
-        if (ids.length > 0)
-            return Math.max(...allClues.filter((c, i) => ids.includes(i)))
-
-        return undefined
-    }, [cluedUsedWords]);
-
     //Clear used words on wordToGuess change
-    // useEffect(() => {
-    //     setUsedWords([]);
-    // }, [wordToGuess]);
-
+    useEffect(() => {
+        setUsedWords([]);
+    }, [wordToGuess]);
 
     useEffect(() => {
         if (usedWords.includes(wordToGuess)) {
             setGameState(GameState.win)
-
+            setShowKb(false)
         } else if (usedWords.length === maxTries) {
             setGameState(GameState.lose)
         }
     }, [usedWords]);
 
-    useEffect(() => {
-        //TODO: proper messaging
-        switch (gameState) {
-            case GameState.win:
-                alert("Congrats!")
-                break
-            case GameState.lose:
-                alert("Close guess! Better luck next time!")
-        }
-    }, [gameState]);
+    const onRetryBtnClick = () => {
+        setShowKb(true); //starts the animation
+    }
 
-
+    const [showKb, setShowKb] = useState(gameState === GameState.playing); //controls kb/results animation
+    const kbAndResultsContainerRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div className={"flex flex-col items-center h-full sm:w-fit"}>
+        <div className={"flex flex-col items-center h-full"}>
             <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
-            <VirtualKeyboard onKeyClick={onKeyPress} keyLetterClue={keyLetterClue} />
+            <div className={"flex flex-col flex-1"}>
+                <SwitchTransition>
+                    <CSSTransition
+                        key={showKb.toString()}
+                        nodeRef={kbAndResultsContainerRef}
+                        timeout={1000}
+                        classNames={{
+                            enter: "[scale:0]",
+                            enterActive: "animate-grow-in",
+                            exitActive: "animate-shrink-down",
+                        }}
+                        addEndListener={() => {
+                            //restart the game
+                            if (showKb && gameState !== GameState.playing) {
+                                setWordToGuess(getWord(filteredWords));
+                                setGameState(GameState.playing);
+                            }
+                        }}
+                    >
+                        <div className={"flex flex-1 flex-grow-[2]"} ref={kbAndResultsContainerRef}>
+                            {showKb ? <VirtualKeyboard onKeyClick={onVKbKeyPress} keyLetterClue={keyLetterClue}/>
+                                :
+                                <GameResults wordToGuess={wordToGuess} gameState={gameState} onRetryClick={onRetryBtnClick}/>}
+                        </div>
+                    </CSSTransition>
+                </SwitchTransition>
+                <div className={"flex-1"} />
+            </div>
+
         </div>
     );
 };
