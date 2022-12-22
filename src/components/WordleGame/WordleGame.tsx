@@ -115,7 +115,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
                             enterActive: "animate-grow-in",
                             exitActive: "animate-shrink-down",
                         }}
-                        addEndListener={() => {
+                        onEntering={() => {
                             //restart the game
                             if (showKb && gameState !== GameState.playing) {
                                 setWordToGuess(getWord(filteredWords));
