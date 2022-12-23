@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import {Clue} from "./gameTypes";
+import { Clue } from "./gameTypes";
 
 
 export const SUBMIT_CHAR = "✓";
@@ -16,25 +16,25 @@ type VirtualKeyboardProps = {
     keyLetterClue?: (letter: string) => Clue | undefined
 }
 
-const VirtualKeyboard: FC<VirtualKeyboardProps> = ({onKeyClick, keyLetterClue}) => {
+const VirtualKeyboard: FC<VirtualKeyboardProps> = ({ onKeyClick, keyLetterClue }) => {
 
     return (
         <div className={"flex flex-col gap-1 items-center justify-center"}>
             {layout.map((row, i) => (
                 <div key={i} className={"flex flex-row gap-[inherit]"}
-                     children={[...row].map((letter, j) => (
-                         <button key={j}
-                                 children={letter.replace("✓", "Enter")}
-                                 onClick={onKeyClick && onKeyClick(letter)}
-                                 data-clue={keyLetterClue && keyLetterClue(letter)}
-                             // disabled={keyLetterClue && keyLetterClue(letter) === 0 ? true : undefined}
-                                 className={"uppercase [--accent-color:theme(colors.yellow.400)]" +
-                                     ' data-[clue]:text-stone-900 data-[clue]:bg-[var(--accent-color)]' +
-                                     ' data-[clue="0"]:[--accent-color:theme(colors.gray.600)] data-[clue="0"]:text-text-primary' +
-                                     ' data-[clue="1"]:[--accent-color:theme(colors.gray.200)]' +
-                                     ' data-[clue="2"]'}
-                         />
-                     ))}
+                    children={[...row].map((letter, j) => (
+                        <button key={j}
+                            children={letter.replace("✓", "Enter")}
+                            onClick={onKeyClick && onKeyClick(letter)}
+                            data-clue={keyLetterClue && keyLetterClue(letter)}
+                            // disabled={keyLetterClue && keyLetterClue(letter) === 0 ? true : undefined}
+                            className={"uppercase border border-[#00000031] [--accent-color:theme(colors.yellow.400)]" +
+                                ' data-[clue]:text-stone-900 data-[clue]:bg-[var(--accent-color)]' +
+                                ' data-[clue="0"]:[--accent-color:theme(colors.gray.600)] data-[clue="0"]:text-text-primary' +
+                                ' data-[clue="1"]:[--accent-color:theme(colors.gray.200)]' +
+                                ' data-[clue="2"]'}
+                        />
+                    ))}
                 />
             ))}
         </div>

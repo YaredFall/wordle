@@ -27,9 +27,9 @@ module.exports = {
         'bg-primary-light': colors.white,
         'bg-secondary-light': colors.red["300"],
         'bg-tertiary-light': colors.white,
-
-        'btn-primary-light': colors.zinc["200"],
-        'btn-hovered-light': colors.zinc["300"]
+        
+        'btn-primary-light': colors.white,
+        'btn-hovered-light': colors.zinc["100"]
       },
       screens: {
         'tall': { 'raw': '(min-height: 800px)' }
