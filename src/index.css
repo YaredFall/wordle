@@ -176,7 +176,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes vibrate {
     0% {
       scale: 1;
@@ -185,7 +185,7 @@
     50% {
       scale: 1.1;
     }
-    
+
     100% {
       scale: 1;
     }
@@ -196,10 +196,21 @@
   box-shadow: 0 0 0 500vmax #00000063;
 }
 
-div:hover+div.hint {
-  z-index: 40;
-  pointer-events: all;
-  transition-duration: 250ms;
-  transition-delay: 750ms;
-  opacity: 1;
+@media(hover: hover) {
+  div:hover+div.hint {
+    z-index: 40;
+    pointer-events: all;
+    transition-duration: 250ms;
+    transition-delay: 750ms;
+    opacity: 1;
+  }
+}
+@media (hover: none) {
+  div:active+div.hint {
+    z-index: 40;
+    pointer-events: all;
+    transition-duration: 250ms;
+    transition-delay: 250ms;
+    opacity: 1;
+  }
 }
