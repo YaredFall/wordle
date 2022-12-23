@@ -25,7 +25,7 @@ const Cell: FC<CellProps> = ({ letter, clue, animationDelay = 0 , hintDirection}
                     enterDone: "animate-vibrate"
                 }}
             >
-                <div ref={cellRef} className={"[--accent-color:theme(colors.yellow.400)] transition-colors duration-[250ms]" +
+                <div ref={cellRef} className={"[--accent-color:theme(colors.yellow.400)] transition-colors duration-[250ms] select-none" +
                     " aspect-square border-[var(--accent-color)] border-2 flex uppercase rounded-lg hover:z-50" +
                     " items-center justify-center w-[calc(2rem+3vmax)] sm:w-[3.25rem]" +
                     (clue !== undefined ? ' text-stone-900 bg-[var(--accent-color)] cursor-help' : '') +

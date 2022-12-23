@@ -197,7 +197,7 @@
 }
 
 @media(hover: hover) {
-  div:hover+div.hint {
+  div:hover + div.hint {
     z-index: 40;
     pointer-events: all;
     transition-duration: 250ms;
@@ -206,7 +206,7 @@
   }
 }
 @media (hover: none) {
-  div:active+div.hint {
+  div:active + div.hint {
     z-index: 40;
     pointer-events: all;
     transition-duration: 250ms;
