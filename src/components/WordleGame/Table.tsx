@@ -15,7 +15,8 @@ const Table: FC<TableProps> = ({rows, cluedUsedWords= [], currentLetters= []}) =
         <div className={"text-[2rem] font-semibold flex flex-col gap-2 py-[4vh] flex-1 justify-center"}>
             {[...Array(rows)].map((e, i) => {
                 if (i < cluedUsedWords?.length)
-                    return <Row key={i} letters={[...cluedUsedWords[i].word]} clues={[...cluedUsedWords[i].clues]}/>
+                    return <Row key={i} letters={[...cluedUsedWords[i].word]} clues={[...cluedUsedWords[i].clues]} 
+                                hintDirection={rows - i > 2 ? "down" : "up"}/>
                 else if (i === cluedUsedWords?.length)
                     return <Row key={i} letters={currentLetters}/>
                 else

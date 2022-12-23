@@ -24,7 +24,7 @@ module.exports = {
 
         'text-primary-light': colors.zinc["900"],
 
-        'bg-primary-light': colors.zinc["200"],
+        'bg-primary-light': colors.white,
         'bg-secondary-light': colors.red["300"],
         'bg-tertiary-light': colors.white,
 
