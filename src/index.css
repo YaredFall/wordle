@@ -75,7 +75,7 @@
 
   @media(hover: hover) {
     button:hover {
-      background-color: var(--btn-hover-bg-color);
+      background-color: var(--accent-color, var(--btn-hover-bg-color));
     }
   }
 
@@ -193,7 +193,7 @@
 }
 
 .hint {
-  box-shadow: 0 0 0 500vmax #00000063;
+  box-shadow: 0 0 0 500vmax #0000004f;
 }
 
 @media(hover: hover) {

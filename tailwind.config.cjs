@@ -11,28 +11,35 @@ module.exports = {
       colors: {
         //    DARK VALUES    //
 
-        'text-primary': colors.zinc["50"],
+        'text-primary': colors.zinc[50],
 
-        'bg-primary': colors.zinc["900"],
-        'bg-secondary': colors.zinc["700"],
-        'bg-tertiary': colors.zinc["800"],
-
-        'btn-primary': colors.zinc["900"],
-        'btn-hovered': colors.zinc["700"],
+        'bg-primary': colors.zinc[900],
+        // 'bg-secondary': colors.zinc[700],
+        'bg-tertiary': '#2c2c30',
+        
+        'btn-primary': colors.neutral[900],
+        'btn-hovered': colors.neutral[700],
 
         //    LIGHT VALUES    //
 
-        'text-primary-light': colors.zinc["900"],
+        'text-primary-light': colors.zinc[900],
 
         'bg-primary-light': colors.white,
-        'bg-secondary-light': colors.red["300"],
+        // 'bg-secondary-light': colors.red[300],
         'bg-tertiary-light': colors.white,
         
         'btn-primary-light': colors.white,
-        'btn-hovered-light': colors.zinc["100"]
+        'btn-hovered-light': colors.zinc[200],
+        
+        //    ACCENTS    //
+        'accent-primary': '#eace08',
+        'accent-secondary': colors.stone[200],
+        'accent-tertiary': colors.zinc[500]
+        
       },
       screens: {
-        'tall': { 'raw': '(min-height: 800px)' }
+        'tall': { 'raw': '(min-height: 800px)' },
+        'lg': '960px'
       },
       animation: {
         'grow-in': 'grow-in 750ms 250ms cubic-bezier(0.55, 0.06, 0.63, 1.21) forwards',

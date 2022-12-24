@@ -26,13 +26,13 @@ const VirtualKeyboard: FC<VirtualKeyboardProps> = ({ onKeyClick, keyLetterClue }
                         <button key={j}
                             children={letter.replace("✓", "Enter")}
                             onClick={onKeyClick && onKeyClick(letter)}
-                            data-clue={keyLetterClue && keyLetterClue(letter)}
-                            // disabled={keyLetterClue && keyLetterClue(letter) === 0 ? true : undefined}
-                            className={"uppercase border border-[#00000031] [--accent-color:theme(colors.yellow.400)]" +
-                                ' data-[clue]:text-stone-900 data-[clue]:bg-[var(--accent-color)]' +
-                                ' data-[clue="0"]:[--accent-color:theme(colors.gray.600)] data-[clue="0"]:text-text-primary' +
-                                ' data-[clue="1"]:[--accent-color:theme(colors.gray.200)]' +
-                                ' data-[clue="2"]'}
+                            className={"uppercase border border-[#00000031] bg-[var(--accent-color,var(--btn-bg-color))] transition-colors" +
+                                (keyLetterClue === undefined ? "" :
+                                    ((keyLetterClue(letter) !== undefined ? " animate-vibrate" : "") +
+                                        (keyLetterClue(letter) === 0 ? ' [--accent-color:theme(colors.accent-tertiary)] text-white' :
+                                            keyLetterClue(letter) === 1 ? ' [--accent-color:theme(colors.accent-secondary)] text-stone-900' :
+                                                keyLetterClue(letter) === 2 ? ' [--accent-color:theme(colors.accent-primary)] text-stone-900' : '')))
+                            }
                         />
                     ))}
                 />
