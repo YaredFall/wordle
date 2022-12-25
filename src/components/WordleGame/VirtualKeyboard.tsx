@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { Clue } from "./gameTypes";
 
 
@@ -12,11 +12,64 @@ const layout = [
 ]
 
 type VirtualKeyboardProps = {
-    onKeyClick?: (letter: string) => (e: React.MouseEvent) => void
+    onKeyClick?: (letter: string) => (e?: React.MouseEvent) => void
     keyLetterClue?: (letter: string) => Clue | undefined
 }
 
 const VirtualKeyboard: FC<VirtualKeyboardProps> = ({ onKeyClick, keyLetterClue }) => {
+
+    const [pressedBtns, setPressedBtns] = useState<string[]>([])
+
+    useEffect(() => {
+        const onKeyDownHandler = (e: KeyboardEvent) => {
+            let letter: string | undefined;
+            if (e.code.match(/Key[A-Z]/)) {
+                letter = e.code.at(-1)?.toLocaleLowerCase();
+                onKeyClick && letter && onKeyClick(letter)();
+            }
+            else if (e.code === "Backspace") {
+                letter = DELETE_CHAR;
+                onKeyClick && onKeyClick(DELETE_CHAR)();
+            }
+            else if (e.code === "Enter") {
+                letter = SUBMIT_CHAR;
+                onKeyClick && onKeyClick(SUBMIT_CHAR)();
+            }
+            else {
+                return
+            }
+            (document.activeElement as HTMLElement).blur();
+            letter && onKeyClick && onKeyClick(letter)();
+            letter && setPressedBtns(prev => {
+                const l = letter as string;
+                return !prev.includes(l) ? [...prev, l] : prev;
+            });
+        }
+        const onKeyUpHandler = (e: KeyboardEvent) => {
+            let letter: string | undefined;
+            if (e.code.match(/Key[A-Z]/)) {
+                letter = e.code.at(-1)?.toLocaleLowerCase();
+            }
+            else if (e.code === "Backspace") {
+                letter = DELETE_CHAR;
+            }
+            else if (e.code === "Enter") {
+                letter = SUBMIT_CHAR;
+            }
+            else {
+                return
+            }
+            letter && setPressedBtns(prev => prev.filter(l => l !== letter));
+        }
+        document.addEventListener("keydown", onKeyDownHandler);
+        document.addEventListener("keyup", onKeyUpHandler);
+
+        return () => {
+            document.removeEventListener("keydown", onKeyDownHandler);
+            document.removeEventListener("keydown", onKeyUpHandler);
+        };
+    }, [onKeyClick])
+
 
     return (
         <div className={"flex flex-col gap-1 items-center justify-center"}>
@@ -27,6 +80,7 @@ const VirtualKeyboard: FC<VirtualKeyboardProps> = ({ onKeyClick, keyLetterClue }
                             children={letter.replace("✓", "Enter")}
                             onClick={onKeyClick && onKeyClick(letter)}
                             className={"uppercase border border-[#00000031] bg-[var(--accent-color,var(--btn-bg-color))] transition-colors" +
+                                (pressedBtns.includes(letter) ? " active" : "") +
                                 (keyLetterClue === undefined ? "" :
                                     ((keyLetterClue(letter) !== undefined ? " animate-vibrate" : "") +
                                         (keyLetterClue(letter) === 0 ? ' [--accent-color:theme(colors.accent-tertiary)] text-white' :

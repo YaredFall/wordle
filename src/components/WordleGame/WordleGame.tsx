@@ -52,7 +52,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     }, [cluedUsedWords]);
 
 
-    const onVKbKeyPress = (letter: string) => (e: React.MouseEvent) => {
+    const onVKbKeyPress = (letter: string) => () => {
         if (gameState !== GameState.playing) return
 
         if (letter === SUBMIT_CHAR) {

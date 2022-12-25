@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { GameState } from "./gameTypes";
 
 
 type GameResultsProps = {
     wordToGuess: string
     gameState: GameState
-    onRetryClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    onRetryClick?: () => void
 }
 
 const GameResults: FC<GameResultsProps> = ({ gameState, wordToGuess, onRetryClick }) => {
@@ -13,6 +13,21 @@ const GameResults: FC<GameResultsProps> = ({ gameState, wordToGuess, onRetryClic
     const won = gameState === GameState.win;
     const lost = gameState === GameState.lose;
 
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            if (e.code === "Enter") {
+                onRetryClick && onRetryClick();
+            }
+        }
+        
+        document.addEventListener("keydown", handler)
+        
+        return () => {
+            document.removeEventListener("keydown", handler);
+        }
+    }, [])
+
+    
     return (
         <div className={"flex flex-col gap-4 items-center justify-center font-bold"} >
             <div className={"text-3xl text-zinc-900 text-center py-3 px-6 rounded-lg flex flex-col items-center justify-center w-full " +

@@ -78,12 +78,15 @@
       background-color: var(--accent-color, var(--btn-hover-bg-color));
     }
   }
-
+  
   button:active {
     background-color: var(--btn-hover-bg-color);
     translate: 0 1px;
   }
-
+  button.active {
+    translate: 0 1px;
+  }
+  
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;

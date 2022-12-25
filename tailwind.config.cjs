@@ -32,7 +32,7 @@ module.exports = {
         'btn-hovered-light': colors.zinc[200],
         
         //    ACCENTS    //
-        'accent-primary': '#eace08',
+        'accent-primary': '#eac808',
         'accent-secondary': colors.stone[200],
         'accent-tertiary': colors.zinc[500]
         
