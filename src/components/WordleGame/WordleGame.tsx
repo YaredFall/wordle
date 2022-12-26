@@ -5,6 +5,7 @@ import words from "../../assets/wordList.json"
 import GameResults from "./GameResults";
 import {CSSTransition, SwitchTransition} from "react-transition-group";
 import {Clue, GameState} from "./gameTypes";
+import ControlBar from './ControlBar';
 
 
 const getWord = (wordList: string[]) => {
@@ -103,7 +104,10 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
 
     return (
         <div className={"flex flex-col items-center h-full"}>
-            <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
+            <div className={"flex-1 flex flex-col justify-center pb-[4vh] pt-[2vh]"}>
+                <ControlBar />
+                <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
+            </div>
             <div className={"flex flex-col flex-1"}>
                 <SwitchTransition>
                     <CSSTransition
