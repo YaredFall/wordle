@@ -10,7 +10,7 @@ const ThemeToggle: FC<ThemeToggleProps> = (props) => {
     const [toggleTheme] = useDarkMode();
 
     return (
-        <button children={"☼"} onClick={toggleTheme} title={"Change theme"} {...props} />
+        <button children={"☼"} onClick={() => toggleTheme()} title={"Change theme"} {...props} />
     );
 };
 

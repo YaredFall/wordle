@@ -104,11 +104,11 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
 
     return (
         <div className={"flex flex-col items-center h-full"}>
-            <div className={"flex-1 flex flex-col justify-center pb-[4vh] pt-[2vh]"}>
+            <div className={"flex-1 flex flex-col justify-center pb-[max(2rem,4vh)]"}>
                 <ControlBar />
                 <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
             </div>
-            <div className={"flex flex-col flex-1"}>
+            <div className={"flex flex-col flex-1 flex-grow-[2]"}>
                 <SwitchTransition>
                     <CSSTransition
                         key={showKb.toString()}

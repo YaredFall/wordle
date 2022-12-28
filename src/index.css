@@ -19,6 +19,21 @@
     --btn-hover-bg-color: theme("colors.btn-hovered-light");
   }
 
+  :root.dark {
+    color-scheme: dark;
+
+    --text-color: theme("colors.text-primary");
+    --bg-color: theme("colors.bg-tertiary");
+
+    --navbar-color: theme("colors.bg-primary");
+
+    --link-color: #646cff;
+    --link-hover-color: #535bf2;
+
+    --btn-bg-color: theme("colors.btn-primary");
+    --btn-hover-bg-color: theme("colors.btn-hovered");
+  }
+
   :root {
     font-family: 'Rubik', sans-serif;
     font-size: min(2px + 2.5vmin, 16px);
@@ -78,15 +93,16 @@
       background-color: var(--accent-color, var(--btn-hover-bg-color));
     }
   }
-  
+
   button:active {
     background-color: var(--btn-hover-bg-color);
     translate: 0 1px;
   }
+
   button.active {
     translate: 0 1px;
   }
-  
+
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -111,37 +127,19 @@
 
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not(.dark) {
-      color-scheme: dark;
-
-      --text-color: theme("colors.text-primary");
-      --bg-color: theme("colors.bg-tertiary");
-
-      --navbar-color: theme("colors.bg-primary");
-
-      --link-color: #646cff;
-      --link-hover-color: #535bf2;
-
-      --btn-bg-color: theme("colors.btn-primary");
-      --btn-hover-bg-color: theme("colors.btn-hovered");
-    }
-  }
-
   @media (prefers-color-scheme: light) {
-    :root.dark {
-      color-scheme: dark;
+    :root:not(.dark) {
+      color-scheme: light;
 
-      --text-color: theme("colors.text-primary");
-      --bg-color: theme("colors.bg-tertiary");
+      --text-color: theme("colors.text-primary-light");
+      --bg-color: theme("colors.bg-tertiary-light");
 
-      --navbar-color: theme("colors.bg-primary");
+      --navbar-color: theme("colors.bg-primary-light");
 
-      --link-color: #646cff;
-      --link-hover-color: #535bf2;
+      --link-hover-color: #747bff;
 
-      --btn-bg-color: theme("colors.btn-primary");
-      --btn-hover-bg-color: theme("colors.btn-hovered");
+      --btn-bg-color: theme("colors.btn-primary-light");
+      --btn-hover-bg-color: theme("colors.btn-hovered-light");
     }
   }
 
@@ -200,7 +198,7 @@
 }
 
 @media(hover: hover) {
-  div:hover + div.hint {
+  div:hover+div.hint {
     z-index: 40;
     pointer-events: all;
     transition-duration: 250ms;
@@ -208,8 +206,9 @@
     opacity: 1;
   }
 }
+
 @media (hover: none) {
-  div:active + div.hint {
+  div:active+div.hint {
     z-index: 40;
     pointer-events: all;
     transition-duration: 250ms;
