@@ -14,7 +14,7 @@ module.exports = {
         'text-primary': colors.zinc[50],
 
         'bg-primary': colors.zinc[900],
-        // 'bg-secondary': colors.zinc[700],
+        'bg-secondary': '#b7b7b7',
         'bg-tertiary': '#2c2c30',
         
         'btn-primary': colors.neutral[900],
@@ -25,7 +25,7 @@ module.exports = {
         'text-primary-light': colors.zinc[900],
 
         'bg-primary-light': colors.white,
-        // 'bg-secondary-light': colors.red[300],
+        'bg-secondary-light': '#707070',
         'bg-tertiary-light': colors.white,
         
         'btn-primary-light': colors.white,
@@ -45,7 +45,9 @@ module.exports = {
         'grow-in': 'grow-in 750ms 250ms cubic-bezier(0.55, 0.06, 0.63, 1.21) forwards',
         'shrink-down': 'shrink-down 500ms 250ms cubic-bezier(0.6, -0.37, 0.92, 0.64) forwards',
         'fade-in-delayed': 'fade-in 750ms 750ms cubic-bezier(0.6, -0.37, 0.92, 0.64) forwards',
-        'vibrate': 'vibrate 250ms ease forwards'
+        'vibrate-once': 'vibrate 500ms ease forwards',
+        'rotate-in': 'rotate-in 150ms ease forwards',
+        'rotate-out': 'rotate-out 150ms ease forwards'
       }
     },
   },

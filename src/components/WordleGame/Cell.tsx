@@ -13,7 +13,7 @@ type CellProps = {
 
 const Cell: FC<CellProps> = ({ letter, clue, animationDelay = 0 , hintDirection}) => {
     const cellRef = useRef<HTMLDivElement>(null)
-
+    
     return (
         <>
             <CSSTransition
@@ -21,8 +21,8 @@ const Cell: FC<CellProps> = ({ letter, clue, animationDelay = 0 , hintDirection}
                 nodeRef={cellRef}
                 timeout={250 + animationDelay}
                 classNames={{
-                    enter: "animate-vibrate",
-                    enterDone: "animate-vibrate"
+                    enter: "animate-vibrate-once",
+                    enterDone: "animate-vibrate-once"
                 }}
             >
                 <div ref={cellRef} className={"[--accent-color:theme(colors.accent-primary)] transition-colors duration-[250ms] select-none" +

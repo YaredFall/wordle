@@ -72,12 +72,7 @@
     min-width: 320px;
     min-height: 100vh;
   }
-
-  h1 {
-    font-size: 3.5em;
-    line-height: 1.2;
-  }
-
+  
   button {
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
@@ -124,7 +119,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
   }
 
   @media (prefers-color-scheme: light) {
@@ -177,19 +171,37 @@
       opacity: 1;
     }
   }
-
+  
   @keyframes vibrate {
     0% {
       scale: 1;
     }
-
-    50% {
+    
+    25% {
       scale: 1.1;
     }
-
-    100% {
+    
+    50%, 100% {
       scale: 1;
     }
+  }
+}
+
+@keyframes rotate-in {
+  0% {
+    rotate: -45deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+@keyframes rotate-out {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 45deg;
   }
 }
 

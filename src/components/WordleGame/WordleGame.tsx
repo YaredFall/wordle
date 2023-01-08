@@ -52,7 +52,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
         return undefined
     }, [cluedUsedWords]);
 
-
+    
     const onVKbKeyPress = (letter: string) => () => {
         if (gameState !== GameState.playing) return
 

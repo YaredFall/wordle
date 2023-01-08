@@ -82,10 +82,10 @@ const VirtualKeyboard: FC<VirtualKeyboardProps> = ({ onKeyClick, keyLetterClue }
                             className={"uppercase border border-[#00000031] bg-[var(--accent-color,var(--btn-bg-color))] transition-colors" +
                                 (pressedBtns.includes(letter) ? " active" : "") +
                                 (keyLetterClue === undefined ? "" :
-                                    ((keyLetterClue(letter) !== undefined ? " animate-vibrate" : "") +
-                                        (keyLetterClue(letter) === 0 ? ' [--accent-color:theme(colors.accent-tertiary)] text-white' :
-                                            keyLetterClue(letter) === 1 ? ' [--accent-color:theme(colors.accent-secondary)] text-stone-900' :
-                                                keyLetterClue(letter) === 2 ? ' [--accent-color:theme(colors.accent-primary)] text-stone-900' : '')))
+                                    ((keyLetterClue(letter) !== undefined ? " animate-vibrate-once" : "") +
+                                        (keyLetterClue(letter) === 0 ? ' [--accent-color:theme(colors.accent-tertiary)] text-text-primary' :
+                                            keyLetterClue(letter) === 1 ? ' [--accent-color:theme(colors.accent-secondary)] text-text-primary-light' :
+                                                keyLetterClue(letter) === 2 ? ' [--accent-color:theme(colors.accent-primary)] text-text-primary-light' : '')))
                             }
                         />
                     ))}

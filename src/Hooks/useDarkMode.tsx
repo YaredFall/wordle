@@ -1,24 +1,33 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
-/**
- * Toggles dark theme.
- * @param {boolean} to - Set enabled to true/false.
- */
-const toggleTheme = (to?: boolean) => {
-    console.log(to);
-    if (to === undefined) {
-        document.documentElement.classList.toggle("dark");
-    } else if (to) {
-        document.documentElement.classList.add("dark");
-    } else {
-        document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("darkmode", document.documentElement.classList.contains("dark").toString());
-}
 
 const useDarkMode = () => {
 
-    useEffect(() => {
+    
+    /**
+     * Toggles dark theme.
+     * @param {boolean} to - Set theme to dark (true) / light (false).
+     */
+    const toggleTheme = (to?: boolean) => {
+        console.log(to)
+        if (to === undefined) {
+            document.documentElement.classList.toggle("dark");
+            setDarkThemeEnabled(prev => !prev)
+        } else if (to) {
+            document.documentElement.classList.add("dark");
+            setDarkThemeEnabled(to);
+        } else {
+            document.documentElement.classList.remove("dark");
+            setDarkThemeEnabled(to);
+        }
+        localStorage.setItem("darkmode", document.documentElement.classList.contains("dark").toString());
+    }
+    
+    const storedDarkModeOption = localStorage.getItem("darkmode");
+    const [darkThemeEnabled, setDarkThemeEnabled] = useState<boolean>(storedDarkModeOption === "true" ? true : false);
+
+    useLayoutEffect(() => {
+        console.log("!");
         let darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
         /** Sets theme according to system preference, if there is no stored value */
         const trySetTheme = () => {
@@ -27,10 +36,9 @@ const useDarkMode = () => {
             }
         }
         
-        const storedDarkModeOption = localStorage.getItem("darkmode");
-        if (storedDarkModeOption === "true")
+        if (storedDarkModeOption === "true") {
             toggleTheme(true);
-        else if (storedDarkModeOption === "false") {
+        } else if (storedDarkModeOption === "false") {
             toggleTheme(false);
         } else {
             trySetTheme();
@@ -52,7 +60,7 @@ const useDarkMode = () => {
         };
     }, []);
 
-    return [toggleTheme] as const;
+    return [toggleTheme, darkThemeEnabled] as const;
 }
 
 export default useDarkMode;
