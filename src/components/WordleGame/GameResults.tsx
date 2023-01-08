@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { GameState } from "./gameTypes";
 
 
@@ -12,21 +12,14 @@ const GameResults: FC<GameResultsProps> = ({ gameState, wordToGuess, onRetryClic
 
     const won = gameState === GameState.win;
     const lost = gameState === GameState.lose;
-
-    useEffect(() => {
-        const handler = (e: KeyboardEvent) => {
-            if (e.code === "Enter") {
-                onRetryClick && onRetryClick();
-            }
-        }
-        
-        document.addEventListener("keydown", handler)
-        
-        return () => {
-            document.removeEventListener("keydown", handler);
-        }
-    }, [])
-
+    
+    const retryBtnRef = useRef<HTMLButtonElement>(null)
+    
+    if (won || lost) {
+        setTimeout(() => {
+            retryBtnRef.current?.focus();
+        }, 0);
+    }
     
     return (
         <div className={"flex flex-col gap-4 items-center justify-center font-bold"} >
@@ -34,7 +27,7 @@ const GameResults: FC<GameResultsProps> = ({ gameState, wordToGuess, onRetryClic
                 (won ? "bg-accent-primary" : "bg-accent-secondary")}
                 children={won ? "Great guess!" : lost ? `Nope! It was "${wordToGuess.toUpperCase()}"` : "Game is paused"}
             />
-            <button className={"bg-transparent hover:bg-transparent hover:text-bg-secondary-light dark:hover:text-bg-secondary opacity-0 animate-fade-in-delayed"} onClick={onRetryClick} children={"Try again"} />
+            <button ref={retryBtnRef} className={"bg-transparent hover:bg-transparent hover:text-bg-secondary-light dark:hover:text-bg-secondary opacity-0 animate-fade-in-delayed"} onClick={onRetryClick} children={"Try again"} />
         </div>
     );
 };

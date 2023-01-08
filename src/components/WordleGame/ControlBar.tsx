@@ -6,14 +6,15 @@ import StatsButton from '../StatsButton';
 
 
 type controlBarProps = {
-
+    pauseTimer?: boolean
+    resetTimerOnPauseEnd?: boolean
 }
 
-const controlBar: FC<controlBarProps> = ({ }) => {
+const controlBar: FC<controlBarProps> = ({ pauseTimer, resetTimerOnPauseEnd }) => {
     
     return (
         <div className={"flex flex-row pt-1 pb-2 items-center"}>
-            <Timer className={"ml-1 self-end text-xl sm:text-base"} />
+            <Timer paused={pauseTimer} resetOnPauseEnd={resetTimerOnPauseEnd} className={"ml-1 self-end text-xl sm:text-base"} />
             <div className={"flex flex-row ml-auto gap-1 text-3xl sm:text-xl"}>
                 <HelpButton className={"rounded-full p-1 bg-transparent hover:bg-transparent transition-colors " + 
                     "text-text-primary-light hover:text-bg-secondary-light dark:text-text-primary dark:hover:text-bg-secondary"} title={"Help"} />

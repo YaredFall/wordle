@@ -105,7 +105,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     return (
         <div className={"flex flex-col items-center h-full"}>
             <div className={"flex-1 flex flex-col justify-center pb-[max(2rem,4vh)]"}>
-                <ControlBar />
+                <ControlBar pauseTimer={gameState !== GameState.playing} resetTimerOnPauseEnd={true} />
                 <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
             </div>
             <div className={"flex flex-col flex-1 flex-grow-[2]"}>
