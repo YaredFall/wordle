@@ -9,7 +9,6 @@ const useDarkMode = () => {
      * @param {boolean} to - Set theme to dark (true) / light (false).
      */
     const toggleTheme = (to?: boolean) => {
-        console.log(to)
         if (to === undefined) {
             document.documentElement.classList.toggle("dark");
             setDarkThemeEnabled(prev => !prev)
@@ -27,7 +26,6 @@ const useDarkMode = () => {
     const [darkThemeEnabled, setDarkThemeEnabled] = useState<boolean>(storedDarkModeOption === "true" ? true : false);
 
     useLayoutEffect(() => {
-        console.log("!");
         let darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
         /** Sets theme according to system preference, if there is no stored value */
         const trySetTheme = () => {
