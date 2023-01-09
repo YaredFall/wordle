@@ -15,7 +15,7 @@ const CellHint: FC<CellHintProps> = ({ clue, letter, hintDirection = "down" }) =
                 " top-[calc(-3.75rem-6vmax)] sm:top-[calc(-7rem)] lg:bottom-0 lg:top-auto") +
             " lg:left-[-2rem] lg:translate-x-[-100%] lg:h-auto pointer-events-none flex items-center" +
             (clue !== undefined ? ' bg-[var(--accent-color)]' : '') +
-            (clue === 0 ? ' [--accent-color:theme(colors.accent-tertiary)]' :
+            (clue === 0 ? ' [--accent-color:theme(colors.accent-tertiary)] text-text-primary' :
                 clue === 1 ? ' [--accent-color:theme(colors.accent-secondary)] text-text-primary-light' :
                     clue === 2 ? ' [--accent-color:theme(colors.accent-primary)] text-text-primary-light' : '')}
             children={

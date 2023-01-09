@@ -15,7 +15,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
             <nav>
             
             </nav>
-            <ThemeToggle className={"group ml-auto text-[1.2em] px-3 py-5 sm:py-3 bg-transparent hover:bg-transparent border-none align-middle"} />
+            <ThemeToggle className={"group ml-auto text-[1.2em] px-3 py-5 sm:py-3 !bg-transparent border-none align-middle"} />
         </header>
     );
 };
