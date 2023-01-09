@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import Table from "./Table";
 import VirtualKeyboard, {DELETE_CHAR, SUBMIT_CHAR} from "./VirtualKeyboard";
 import words from "../../assets/wordList.json"

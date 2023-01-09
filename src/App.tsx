@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Navbar from "./components/Navbar";
 import WordleGame from "./components/WordleGame/WordleGame";
 

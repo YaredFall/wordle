@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from 'react';
+import { FC, useRef } from 'react';
 import { Clue } from "./gameTypes";
 import { CSSTransition } from 'react-transition-group';
 import CellHint from './CellHint';
