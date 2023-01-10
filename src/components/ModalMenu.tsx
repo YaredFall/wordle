@@ -28,7 +28,7 @@ const ModalMenu: FC<ModalMenuProps> = ({ isOpen, setIsOpen, onOpen, onClose, chi
                     onClick={() => { setIsOpen(false) }}>
                     <TfiClose />
                 </button>
-                <div className="animate-fade-in-delayed [animation-delay:250ms] fixed top-[50%] left-[50%] [translate:-50%_-50%]">
+                <div className="animate-fade-in-delayed [animation-delay:250ms] opacity-0 fixed top-[50%] left-[50%] [translate:-50%_-50%]">
                     {children}
                 </div>
             </div>

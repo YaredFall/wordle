@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import Timer from '../Timer';
 import ButtonWithModalMenu from '../ButtonWithModalMenu';
-import { FaRegQuestionCircle } from 'react-icons/fa';
+import { FiHelpCircle } from 'react-icons/fi';
 import { IoSettingsSharp } from 'react-icons/io5';
-import { RiBarChart2Fill } from 'react-icons/ri';
+import { MdLeaderboard } from 'react-icons/md';
 
 
 type controlBarProps = {
@@ -21,7 +21,7 @@ const controlBar: FC<controlBarProps> = ({ isTimerPaused, resetTimerOnPauseEnd, 
             <div className={"flex flex-row ml-auto gap-1 text-3xl sm:text-xl"}>
                 <ButtonWithModalMenu 
                     className={"rounded-full p-1 !bg-transparent dark:hover:text-bg-secondary hover:text-bg-secondary-light"}
-                    children={<FaRegQuestionCircle />}
+                    children={<FiHelpCircle />}
                     title={"Help"} 
                     modalClassName={"bg-zinc-100 dark:bg-bg-primary"}
                     modalChildren={"Help modal!"}
@@ -30,7 +30,7 @@ const controlBar: FC<controlBarProps> = ({ isTimerPaused, resetTimerOnPauseEnd, 
                 />
                 <ButtonWithModalMenu 
                     className={"rounded-full p-1 !bg-transparent dark:hover:text-bg-secondary hover:text-bg-secondary-light"}
-                    children={<RiBarChart2Fill />}
+                    children={<MdLeaderboard />}
                     title={"Statistics"} 
                     modalClassName={"bg-zinc-100 dark:bg-bg-primary"}
                     modalChildren={"Stats modal!"}
