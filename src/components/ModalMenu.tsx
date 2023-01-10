@@ -15,13 +15,13 @@ const ModalMenu: FC<ModalMenuProps> = ({ isOpen, setIsOpen, onOpen, onClose, chi
 
     return (
         <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={1000} unmountOnExit={true} classNames={{
-            enterDone: "![--width:300vmax] !inset-[calc(var(--width)/-2)]",
-            enter: "![--width:300vmax] !inset-[calc(var(--width)/-2)]"
+            enterDone: "![--width:250vmax] !m-[calc(50%+var(--width)/-2)]",
+            enter: "![--width:250vmax] !m-[calc(50%+var(--width)/-2)]"
         }}
             onEnter={onOpen}
             onExited={onClose}
         >
-            <div ref={nodeRef} className={`absolute z-[9999] w-[var(--width)] ml-[50%] mt-[50%] aspect-square duration-1000 transition-[width,right,left,top,bottom] ` +
+            <div ref={nodeRef} className={`absolute z-[9999] w-[var(--width)] ml-[50%] mt-[50%] aspect-square duration-1000 transition-[width,margin] ` +
                 `[--width:0] inset-0 rounded-[500vmax] [clip-path:inset(0_0_0_0);] ${className}`} {...otherProps}>
                 <button className={"animate-fade-in-delayed [animation-delay:250ms] opacity-0 text-2xl" +
                     " fixed top-8 right-8 p-4 aspect-square !bg-transparent hover:text-bg-secondary-light dark:hover:text-bg-secondary"}
