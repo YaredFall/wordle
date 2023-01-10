@@ -24,6 +24,7 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     }, [wordLength])
 
     const [gameState, setGameState] = useState(GameState.playing);
+    const lastGameState = useRef(gameState)
     const [wordToGuess, setWordToGuess] = useState(getWord(filteredWords));
     const [currentLetters, setCurrentLetters] = useState<string[]>([]);
     const [usedWords, setUsedWords] = useState<string[]>([])
@@ -105,7 +106,18 @@ const WordleGame: FC<WordleGameProps> = ({wordLength = 5, maxTries = 6}) => {
     return (
         <div className={"flex flex-col items-center h-full"}>
             <div className={"flex-1 flex flex-col justify-center pb-[max(2rem,4vh)]"}>
-                <ControlBar pauseTimer={gameState !== GameState.playing} resetTimerOnPauseEnd={true} />
+                <ControlBar 
+                    isTimerPaused={gameState !== GameState.playing}
+                    resetTimerOnPauseEnd={lastGameState.current !== GameState.paused}
+                    onModalOpen={() => {
+                        lastGameState.current = gameState
+                        setGameState(GameState.paused)
+                    }}
+                    onModalClose={() => {
+                        setGameState(lastGameState.current)
+                        lastGameState.current = GameState.paused
+                    }}
+                    />
                 <Table rows={maxTries} currentLetters={currentLetters} cluedUsedWords={cluedUsedWords} />
             </div>
             <div className={"flex flex-col flex-1 flex-grow-[2]"}>

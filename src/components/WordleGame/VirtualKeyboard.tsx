@@ -79,7 +79,7 @@ const VirtualKeyboard: FC<VirtualKeyboardProps> = ({ onKeyClick, keyLetterClue }
                         <button key={j}
                             children={letter.replace("✓", "Enter")}
                             onClick={onKeyClick && onKeyClick(letter)}
-                            className={"uppercase border border-[#00000031] bg-[var(--accent-color,var(--btn-bg-color))] transition-colors" +
+                            className={"uppercase border border-[#00000031] bg-[var(--accent-color,var(--btn-bg-color))] transition-[background-color]" +
                                 (pressedBtns.includes(letter) ? " active" : "") +
                                 (keyLetterClue === undefined ? "" :
                                     ((keyLetterClue(letter) !== undefined ? " animate-vibrate-once" : "") +
