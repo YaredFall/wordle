@@ -29,8 +29,8 @@ const ModalMenu: FC<ModalMenuProps> = ({ isOpen, setIsOpen, onOpen, onClose, chi
                 </div>
             </CSSTransition>
             <CSSTransition nodeRef={modalContentNodeRef} in={isOpen} timeout={1000} unmountOnExit={true} classNames={{
-                enter: "opacity-100 delay-500",
-                enterDone: "opacity-100"
+                enter: "!opacity-100 delay-500",
+                enterDone: "!opacity-100"
             }}
             >
                 <div ref={modalContentNodeRef} className='z-[5000] absolute opacity-0 transition-opacity duration-500'>
