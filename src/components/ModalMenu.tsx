@@ -34,8 +34,8 @@ const ModalMenu: FC<ModalMenuProps> = ({ isOpen, setIsOpen, onOpen, onClose, chi
             }}
             >
                 <div ref={modalContentNodeRef} className='z-[5000] absolute opacity-0 transition-opacity duration-500'>
-                    <button className={"text-2xl" +
-                        " z-[inherit] fixed top-8 right-8 p-4 aspect-square !bg-transparent hover:text-bg-secondary-light dark:hover:text-bg-secondary"}
+                    <button className={"text-3xl sm:text-2xl hover:text-bg-secondary-light dark:hover:text-bg-secondary" +
+                        " z-[inherit] fixed top-6 right-6 sm:top-8 sm:right-8 p-2 aspect-square !bg-transparent"}
                         onClick={() => { setIsOpen(false) }}>
                         <TfiClose />
                     </button>
