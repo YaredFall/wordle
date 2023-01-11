@@ -40,7 +40,6 @@
     line-height: 24px;
     font-weight: 400;
 
-    overflow: hidden;
     background-color: var(--bg-color);
     color: var(--text-color);
     font-synthesis: none;
@@ -48,10 +47,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-  }
-  
-  body {
-    overflow: hidden;
   }
 
   a {
@@ -76,6 +71,10 @@
     width: 100vw;
     min-width: 320px;
     min-height: 100vh;
+  }
+  
+  #root {
+    overflow: hidden;
   }
   
   button {
