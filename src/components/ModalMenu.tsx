@@ -11,28 +11,40 @@ type ModalMenuProps = {
 
 const ModalMenu: FC<ModalMenuProps> = ({ isOpen, setIsOpen, onOpen, onClose, children, className, ...otherProps }) => {
 
-    const nodeRef = useRef<HTMLDivElement>(null)
+    const bgNodeRef = useRef<HTMLDivElement>(null)
+    const modalContentNodeRef = useRef<HTMLDivElement>(null)
 
     return (
-        <CSSTransition nodeRef={nodeRef} in={isOpen} timeout={1000} unmountOnExit={true} classNames={{
-            enterDone: "![clip-path:circle(50%)]",
-            enter: "![clip-path:circle(50%)]"
-        }}
-            onEnter={onOpen}
-            onExited={onClose}
-        >
-            <div ref={nodeRef} className={`absolute z-[9999] w-[var(--width)] aspect-square duration-1000 transition-[clip-path] ` +
-                `[--width:400vmax] m-[calc(50%+var(--width)/-2)] inset-0 rounded-[500vmax] [clip-path:circle(0%)] ${className}`} {...otherProps}>
-                <button className={"animate-fade-in-delayed [animation-delay:250ms] opacity-0 text-2xl" +
-                    " fixed top-8 right-8 p-4 aspect-square !bg-transparent hover:text-bg-secondary-light dark:hover:text-bg-secondary"}
-                    onClick={() => { setIsOpen(false) }}>
-                    <TfiClose />
-                </button>
-                <div className="animate-fade-in-delayed [animation-delay:250ms] opacity-0 fixed top-[50%] left-[50%] [translate:-50%_-50%]">
-                    {children}
+        <>
+            <CSSTransition nodeRef={bgNodeRef} in={isOpen} timeout={1000} unmountOnExit={true} classNames={{
+                enterDone: "![scale:1]",
+                enter: "![scale:1]"
+            }}
+                onEnter={onOpen}
+                onExited={onClose}
+            >
+                <div ref={bgNodeRef} className={`absolute z-[4999] w-[var(--width)] aspect-square duration-1000 transition-[scale] ` +
+                    `[--width:250vmax] m-[calc(50%+var(--width)/-2)] inset-0 rounded-[500vmax] [scale:0] ${className}`} {...otherProps}>
+                    
                 </div>
-            </div>
-        </CSSTransition>
+            </CSSTransition>
+            <CSSTransition nodeRef={modalContentNodeRef} in={isOpen} timeout={1000} unmountOnExit={true} classNames={{
+                enter: "opacity-100 delay-500",
+                enterDone: "opacity-100"
+            }}
+            >
+                <div ref={modalContentNodeRef} className='z-[5000] absolute opacity-0 transition-opacity duration-500'>
+                    <button className={"text-2xl" +
+                        " z-[inherit] fixed top-8 right-8 p-4 aspect-square !bg-transparent hover:text-bg-secondary-light dark:hover:text-bg-secondary"}
+                        onClick={() => { setIsOpen(false) }}>
+                        <TfiClose />
+                    </button>
+                    <div className="z-[inherit] fixed top-[50%] left-[50%] [translate:-50%_-50%]">
+                        {children}
+                    </div>
+                </div>
+            </CSSTransition>
+        </>
     );
 };
 
