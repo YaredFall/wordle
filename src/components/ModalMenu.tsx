@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group'
 import { TfiClose } from "react-icons/tfi";
 
@@ -11,6 +11,21 @@ type ModalMenuProps = {
 
 const ModalMenu: FC<ModalMenuProps> = ({ isOpen, setIsOpen, onOpen, onClose, children, className, ...otherProps }) => {
 
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            if (e.code === "Escape") {
+                setIsOpen(false);
+            }
+        }
+        
+        document.addEventListener("keydown", handler)
+    
+        return () => {
+            document.removeEventListener("keydown", handler)
+        }
+    }, [])
+    
+    
     const bgNodeRef = useRef<HTMLDivElement>(null)
     const modalContentNodeRef = useRef<HTMLDivElement>(null)
 

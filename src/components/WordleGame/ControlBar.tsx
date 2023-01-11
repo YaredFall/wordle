@@ -4,6 +4,7 @@ import ButtonWithModalMenu from '../ButtonWithModalMenu';
 import { FiHelpCircle } from 'react-icons/fi';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { MdLeaderboard } from 'react-icons/md';
+import HelpModal from './HelpModal';
 
 
 type controlBarProps = {
@@ -24,7 +25,7 @@ const controlBar: FC<controlBarProps> = ({ isTimerPaused, resetTimerOnPauseEnd, 
                     children={<FiHelpCircle />}
                     title={"Help"} 
                     modalClassName={"bg-zinc-100 dark:bg-bg-primary"}
-                    modalChildren={"Help modal!"}
+                    modalChildren={<HelpModal />}
                     onModalOpen={onModalOpen}
                     onModalClose={onModalClose}
                 />

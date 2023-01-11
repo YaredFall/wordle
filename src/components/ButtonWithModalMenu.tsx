@@ -14,7 +14,7 @@ const ButtonWithModalMenu: FC<ButtonWithModalMenuProps> = ({ className, modalCla
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <div className={"relative [line-height:0] "} {...otherProps}>
+        <div className={"relative "} {...otherProps}>
             <ModalMenu isOpen={isModalOpen} setIsOpen={setIsModalOpen} className={modalClassName} onOpen={onModalOpen} onClose={onModalClose}>
                 {modalChildren}
             </ModalMenu>
