@@ -54,7 +54,7 @@
 
     font-weight: 500;
     text-decoration: inherit;
-    outline-offset: 0.25rem;
+    /* outline-offset: 0.25rem; */
   }
 
   a:hover {
